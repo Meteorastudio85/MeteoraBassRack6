@@ -1,0 +1,22 @@
+COME CARICARE QUESTO PROGETTO SU GITHUB (nessuna modifica da fare)
+
+1. Estrai lo zip. Si apre una cartella con dentro:
+   .github   Assets   Source   tools   CMakeLists.txt   README.md
+
+2. Su GitHub apri il repository (anche nuovo e vuoto) e clicca
+   "Add file" -> "Upload files".
+
+3. Entra nella cartella estratta, premi Ctrl+A (seleziona TUTTO, compresa
+   la cartella .github) e trascina tutto nella pagina di GitHub.
+   Importante: trascina il CONTENUTO, non la cartella che lo contiene.
+
+4. Clicca "Commit changes".
+
+5. Apri la scheda "Actions": la compilazione parte da sola (15-20 minuti
+   la prima volta). Con la spunta verde, in fondo alla pagina trovi
+   "Artifacts": scarica il plugin per Windows o macOS.
+
+Installazione:
+- Windows: copia la cartella .vst3 in  C:\Program Files\Common Files\VST3
+- Mac:     copia la cartella .vst3 in  Libreria/Audio/Plug-Ins/VST3
+           (e il .component in Libreria/Audio/Plug-Ins/Components per Logic)
