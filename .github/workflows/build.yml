@@ -1,0 +1,39 @@
+name: Build Meteora Bass Rack
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: MeteoraBassRack
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configura (Windows)
+        if: runner.os == 'Windows'
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Configura (macOS)
+        if: runner.os == 'macOS'
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+
+      - name: Compila
+        run: cmake --build build --config Release --parallel 4
+
+      - name: Carica il plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: MeteoraBassRack-${{ runner.os }}
+          path: |
+            MeteoraBassRack/build/MeteoraBassRack_artefacts/Release/VST3
+            MeteoraBassRack/build/MeteoraBassRack_artefacts/Release/AU
+            MeteoraBassRack/build/MeteoraBassRack_artefacts/Release/Standalone
+          if-no-files-found: warn
